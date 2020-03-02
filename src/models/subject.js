@@ -18,10 +18,14 @@ const subjectSchema = new mongoose.Schema({
     },
     hours: {
         type: Number,
-        default: 1
+        default: 4
     },
     semBranch: {
         type: String,
         ref: 'Sem'
     }
 })
+
+const Subject = mongoose.model('Subject', subjectSchema)
+
+module.exports = Subject

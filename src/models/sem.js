@@ -12,6 +12,12 @@ const semSchema = new mongoose.Schema({
     timestamps: true
 })
 
+semSchema.virtuals('subjects', {
+    ref: 'Subject',
+    localField: 'semBranch',
+    foreignField: 'semBranch'
+})
+
 const Sem = mongoose.model('Sem', semSchema)
 
 module.exports = Sem
