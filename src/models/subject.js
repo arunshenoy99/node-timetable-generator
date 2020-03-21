@@ -22,7 +22,7 @@ const subjectSchema = new mongoose.Schema({
     },
     semBranch: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Sem'
+        ref: 'ClassRoom'
     }
 })
 
