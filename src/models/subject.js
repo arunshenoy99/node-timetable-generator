@@ -21,7 +21,7 @@ const subjectSchema = new mongoose.Schema({
         default: 4
     },
     semBranch: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Sem'
     }
 })
