@@ -71,7 +71,7 @@ router.get('/classroom/timetable', async (req, res) => {
             path: 'timetable'
         }).execPopulate()
         if (classroom.timetable.length === 0) {
-            const timetable = generateTimetable(classroom)
+            const timetable = await generateTimetable(classroom)
             return res.status(201).send(timetable)
         }
         res.send(timetable)
