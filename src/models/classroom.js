@@ -36,6 +36,12 @@ classroomSchema.index({ "sem": 1, "branch": 1, "classroom": 1 }, { unique: true 
 classroomSchema.virtual('subjects', {
     ref: 'Subject',
     localField: '_id',
+    foreignField: 'classrooms.classroom'
+})
+
+classroomSchema.virtual('timetable', {
+    ref: 'Timetable',
+    localField: '_id',
     foreignField: 'classroom'
 })
 

@@ -14,4 +14,10 @@ const linkClassrooms = async (subjectObject) => {
     return classrooms
 }
 
-module.exports = linkClassrooms
+const linkClassroom = async (requestedClassroom) => {
+    const classroomDetails = requestedClassroom.split('_')
+    const classroom = await Classroom.findOne({ branch: classroomDetails[0], sem: classroomDetails[1], classroom: classroomDetails[2] })
+    return classroom
+}
+
+module.exports = { linkClassroom, linkClassrooms }

@@ -1,5 +1,9 @@
 const express = require('express')
 const Classroom = require('../models/classroom')
+const Subject = require('../models/subject')
+const Timetable = require('../models/timetable')
+const { linkClassroom } = require('../utils/linkClassrooms')
+const generateTimetable = require('../utils/generateTimetable')
 
 const router = new express.Router()
 
@@ -54,6 +58,25 @@ router.delete('/classroom/:id', async (req, res) => {
         res.send()
     } catch (e) {
         res.status(400).send()
+    }
+})
+
+router.get('/classroom/timetable', async (req, res) => {
+    try {
+        const classroom = await linkClassroom(req.query.classroom)
+        if (!classroom) {
+            return res.status(404).send()
+        }
+        await classroom.populate({
+            path: 'timetable'
+        }).execPopulate()
+        if (classroom.timetable.length === 0) {
+            const timetable = generateTimetable(classroom)
+            return res.status(201).send(timetable)
+        }
+        res.send(timetable)
+    } catch (e) {
+        res.status(500).send()
     }
 })
 

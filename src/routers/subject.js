@@ -1,6 +1,6 @@
 const express = require('express')
 const Subject = require('../models/subject')
-const linkClassrooms = require('../utils/linkClassrooms')
+const { linkClassrooms } = require('../utils/linkClassrooms')
 
 const router = new express.Router()
 
