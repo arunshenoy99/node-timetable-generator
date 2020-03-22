@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const classRoomSchema = new mongoose.Schema({
+const classroomSchema = new mongoose.Schema({
     sem: {
         type: Number,
         required: true,
@@ -16,7 +16,7 @@ const classRoomSchema = new mongoose.Schema({
         trim: true,
         lowercase: true
     },
-    classRoom: {
+    classroom: {
         type: String,
         required: true,
         trim: true,
@@ -31,14 +31,14 @@ const classRoomSchema = new mongoose.Schema({
     timestamps: true
 })
 
-classRoomSchema.index({ 'field1': 1, 'field2':1 }, { unique: true })
+classroomSchema.index({ "sem": 1, "branch": 1, "classroom": 1 }, { unique: true })
 
-classRoomSchema.virtual('subjects', {
+classroomSchema.virtual('subjects', {
     ref: 'Subject',
     localField: '_id',
-    foreignField: 'classRoom'
+    foreignField: 'classroom'
 })
 
-const ClassRoom = mongoose.model('ClassRoom', classRoomSchema)
+const Classroom = mongoose.model('Classroom', classroomSchema)
 
-module.exports = ClassRoom
+module.exports = Classroom

@@ -4,6 +4,7 @@ const subjectSchema = new mongoose.Schema({
     code: {
         type: String,
         trim: true,
+        unique: true,
         required: true,
         uppercase: true
     },
@@ -20,10 +21,15 @@ const subjectSchema = new mongoose.Schema({
         type: Number,
         default: 4
     },
-    semBranch: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ClassRoom'
-    }
+    classrooms: [
+        {
+            classroom: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Classroom',
+                required: true
+            }
+        }
+    ]
 })
 
 const Subject = mongoose.model('Subject', subjectSchema)
